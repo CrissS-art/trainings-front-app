@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core'; 
 import { Component } from '@angular/core';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  template?:
-  `<button (click)="saveToLocalStorage()">Sauvegarde dans local Storage</button>
-  <button (click)="retrieveFromLocalStorage()">Récupère de local Storage</button>`,
 })
 export class AppComponent {
   title = 'trainings-front-app';
+  
   constructor (private localStorageService: LocalStorageService) {}
 
 saveToLocalStorage() {

@@ -8,7 +8,7 @@ import { TrainingsComponent } from './components/trainings/trainings.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @NgModule({
   declarations: [
