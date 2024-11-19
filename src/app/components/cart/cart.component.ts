@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Training } from 'src/app/model/training.model.ts/training.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -8,31 +9,31 @@ import { Training } from 'src/app/model/training.model.ts/training.model';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  cart : Training[] | undefined;
+  amount : number = 0;
+  constructor(private cartService : CartService , private router : Router) { }
 
-  cartItems: Training[] = [];
-  constructor(private cartService: CartService) { }
-
+  /**
+   * à l'initialisation du composant, récupération du panier
+   */
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCart();
+    this.cart = this.cartService.getCart();       
+    this.amount = this.cartService.getAmount();
   }
-  removeTraining(id: number): void {
-    this.cartService.removeTraining(id);
-    this.cartItems = this.cartService.getCart();
-    console.log('Training removed from cart:', id);
+
+  /**
+   * Méthode qui supprime une formation du panier et met à jour l'affichage du panier
+   * @param training 
+   */
+  onRemoveFromCart(training : Training){
+    this.cartService.removeTraining(training);
+    this.cart = this.cartService.getCart();
   }
-  clearCart(): void {
-    this.cartService.clearCart();
-    this.cartItems = [];
-    console.log('Cart has been cleared');
+
+  /**
+   * Méthode de gestion de l'étape suivante de la commande en renvoyant vers le composant de gestion client (formulaire)
+   */
+  onNewOrder(){
+    this.router.navigateByUrl('customer');
   }
 }
-
-
-
-//   onAddToCart(training: any) {
-//     this.cartItems.push();
-//     this.router.navigate(['cart']);
-//     this.router.navigateByUrl('cart');
-//     console.log('Training added to cart:', training);
-//   }
-
