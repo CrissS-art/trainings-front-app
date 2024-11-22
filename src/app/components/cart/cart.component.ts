@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Training } from 'src/app/model/training.model.ts/training.model';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
   cart : Training[] | undefined;
   amount : number = 0;
-  constructor(private cartService : CartService , private router : Router) { }
+  constructor(private cartService : CartService , private router : Router, private authService: AuthService ) { }
 
   /**
    * à l'initialisation du composant, récupération du panier
@@ -32,8 +33,20 @@ export class CartComponent implements OnInit {
 
   /**
    * Méthode de gestion de l'étape suivante de la commande en renvoyant vers le composant de gestion client (formulaire)
+   * vérification de la connexion du client, message si échec
    */
-  onNewOrder(){
-    this.router.navigateByUrl('customer');
+  onNewOrder(): void{
+    if (this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('order');
+    } else {
+      alert('Vous devez vous connecter avant de passer commande.');
+    }
   }
+
+    /**
+   * Méthode permmettant de faire la redirection vers login Page depuis la page customer
+   */
+    fromCartToLoginPage() {
+      this.router.navigate(['/login']);
+    }
 }

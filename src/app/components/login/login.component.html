@@ -1,0 +1,20 @@
+<div id="container">
+    <form (submit)="login()" [formGroup]="loginFormGroup">
+        <h3>Login</h3>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="userName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-flat-button [disabled]="loginFormGroup.invalid">Login</button>
+        @ngIf (invalidCredentials) {
+            <mat-error>Invalid Credential</mat-error>
+            <!-- <span>Vous n'avez pas de compte :
+                <a routerLink="/signup">Signup</a>
+            </span> -->
+        }
+    </form>
+</div>

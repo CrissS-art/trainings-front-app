@@ -48,7 +48,7 @@ getAllTrainings() {
    * Méthode permettant l'ajout d'une formation au panier en utilisant le service dédié
    * @param training 
    */
-  onAddToCart(training:Training){ //////////////ajouter des limites, nmbre entier etc
+  onAddToCart(training:Training){
     if(training.quantity > 0) {
      this.cartService.addTraining(training);
      this.router.navigateByUrl('cart');

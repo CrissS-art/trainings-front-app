@@ -35,4 +35,20 @@
   "price":"1400",
   "quantity":"1" 
 } 
-]}
+],
+
+
+"users": [
+  {
+    "email": "Chrissy@gmail.com",
+    "password": "1234",
+    "roles": ["ADMIN", "USER"]
+  },
+  {
+    "email": "hugo@gmail.com",
+    "password": "1234",
+    "roles": ["USER"]
+  }
+]
+}
+  
