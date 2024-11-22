@@ -11,7 +11,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { AuthService } from './services/auth.service';
     NotFoundComponent,
     CustomerComponent,
     LoginComponent,
-    AuthService
     ],
   imports: [
     BrowserModule,

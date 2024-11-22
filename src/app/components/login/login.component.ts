@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,7 @@ export class LoginComponent implements OnInit {
   invalidCredentials = false;
   errorMessage: string | null = null;
   
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private authService: AuthService, 
-  private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -28,10 +26,9 @@ export class LoginComponent implements OnInit {
   login(): void {
     const { userName, password } = this.loginFormGroup.value;
   
-    this.loginService.authenticateUser(userName, password).subscribe({
+    this.authService.login(userName, password).subscribe({
       next: (user) => {
         if (user) {
-          this.authService.setUser({ email: user.email, roles: user.roles });
           this.router.navigate(['cart']);
           alert('Vous êtes maintenant connecté');
         } else {
@@ -41,7 +38,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         this.invalidCredentials = true;
-        this.errorMessage = 'Login failed. Please check your network connection or try again later.';
+        this.errorMessage = "L'identification ou le mot de passe n'est pas valide.";
         console.error('Login impossible', err);
       },
       complete: () => {

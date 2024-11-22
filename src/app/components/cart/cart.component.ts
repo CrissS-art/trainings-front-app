@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
    */
   onNewOrder(): void{
     if (this.authService.isAuthenticated()) {
-      this.router.navigateByUrl('order');
+      this.router.navigateByUrl('customer');
     } else {
       alert('Vous devez vous connecter avant de passer commande.');
     }
@@ -50,3 +50,16 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 }
+
+/*
+oneworder
+isconnected? passe par 
+authService.isConnected
+
+le tableau user est dans le service auth
+auth injecté dans login avec methode pour verifier si l'user existe  user[]
+methode login dans auth qui prend email et pswd                     login(email,passwd)
+setUser
+localstorage avec user.password= ....(user)
+quand j'appuie sur commander, authservice verifie dans local starage si je suis connecte
+*/

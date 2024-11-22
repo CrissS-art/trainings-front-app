@@ -1,20 +1,31 @@
-<div id="container">
-    <form (submit)="login()" [formGroup]="loginFormGroup">
-        <h3>Login</h3>
-        <mat-form-field>
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="userName">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password">
-        </mat-form-field>
-        <button mat-flat-button [disabled]="loginFormGroup.invalid">Login</button>
-        @ngIf (invalidCredentials) {
-            <mat-error>Invalid Credential</mat-error>
-            <!-- <span>Vous n'avez pas de compte :
-                <a routerLink="/signup">Signup</a>
-            </span> -->
-        }
-    </form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Login</h3>
+                    <form (submit)="login()" [formGroup]="loginFormGroup">
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Username</label>
+                            <input id="userName" type="text" class="form-control" formControlName="userName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control" formControlName="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="loginFormGroup.invalid">Login</button>
+                    </form>
+                    <div *ngIf="invalidCredentials" class="alert alert-danger mt-3">
+                        Invalid credentials, please try again.
+                    </div>
+                    <!-- Signup optionnel -->
+                    <!-- <div class="text-center mt-2">
+                        <span>Don't have an account? 
+                            <a routerLink="/signup">Sign Up</a>
+                        </span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
